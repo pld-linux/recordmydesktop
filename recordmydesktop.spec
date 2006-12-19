@@ -8,17 +8,17 @@ Group:		Applications
 Source0:	http://dl.sourceforge.net/recordmydesktop/%{name}-%{version}.tar.gz
 # Source0-md5:	780dae22c7f02addfc3c666eaf2ef29c
 URL:		http://recordmydesktop.sourceforge.net/
-#BuildRequires:	-
-# alsa (libasound)
-#X
-#libICE-dev
-#libSM-dev
-#libXext
-#libXdamage
-#libXfixes
-#libogg
-#libvorbis
-#libtheora
+BuildRequires:	alsa-lib-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libogg-devel
+BuildRequires:	libtheora-devel
+BuildRequires:	libvorbis-devel
+BuildRequires:	xorg-lib-libICE-devel
+BuildRequires:	xorg-lib-libSM-devel
+BuildRequires:	xorg-lib-libXdamage-devel
+BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	xorg-lib-libXfixes-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -30,6 +30,9 @@ in a usable way.
 %setup -q
 
 %build
+%{__aclocal}
+%{__autoconf}
+%{__automake}
 %configure
 %{__make}
 
