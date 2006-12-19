@@ -2,7 +2,7 @@ Summary:	Desktop session recorder
 Summary(pl):	Rejestrator pulpitu
 Name:		recordmydesktop
 Version:	0.3.1
-Release:	0.1
+Release:	1
 License:	GPL v2+
 Group:		Applications
 Source0:	http://dl.sourceforge.net/recordmydesktop/%{name}-%{version}.tar.gz
@@ -23,8 +23,15 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Simple command line tool that performs the basic tasks of capturing
-and encoding and an interface that exposes the program functionality
-in a usable way.
+and encoding desktop session. It produces files using only open
+formats like theora for video and vorbis for audio, using the ogg
+container.
+
+%description -l pl
+Proste narzêdzie linii poleceñ, które wykonuje podstawowe zadanie
+zrzucania i kodowania bie¿±cej sesji pulpitu. Wytwarza on pliki
+u¿ywaj±c tylko otwartych formatów takich jak theora dla zapisu video i
+vorbis dla zapisu audio, wykorzystuj±c kontener ogg.
 
 %prep
 %setup -q
