@@ -1,5 +1,5 @@
 Summary:	Desktop session recorder
-Summary(pl.UTF-8):   Rejestrator pulpitu
+Summary(pl.UTF-8):	Rejestrator pulpitu
 Name:		recordmydesktop
 Version:	0.3.2
 Release:	1
