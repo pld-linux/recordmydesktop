@@ -1,5 +1,5 @@
 Summary:	Desktop session recorder
-Summary(pl):	Rejestrator pulpitu
+Summary(pl.UTF-8):   Rejestrator pulpitu
 Name:		recordmydesktop
 Version:	0.3.2
 Release:	1
@@ -27,11 +27,11 @@ and encoding desktop session. It produces files using only open
 formats like Theora for video and Vorbis for audio, using the Ogg
 container.
 
-%description -l pl
-Proste narzêdzie linii poleceñ, które wykonuje podstawowe zadanie
-zrzucania i kodowania bie¿±cej sesji pulpitu. Wytwarza on pliki
-u¿ywaj±c tylko otwartych formatów takich jak Theora do zapisu obrazu i
-Vorbis do zapisu d¼wiêku, wykorzystuj±c kontener Ogg.
+%description -l pl.UTF-8
+Proste narzÄ™dzie linii poleceÅ„, ktÃ³re wykonuje podstawowe zadanie
+zrzucania i kodowania bieÅ¼Ä…cej sesji pulpitu. Wytwarza on pliki
+uÅ¼ywajÄ…c tylko otwartych formatÃ³w takich jak Theora do zapisu obrazu i
+Vorbis do zapisu dÅºwiÄ™ku, wykorzystujÄ…c kontener Ogg.
 
 %prep
 %setup -q
