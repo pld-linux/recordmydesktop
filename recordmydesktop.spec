@@ -1,7 +1,7 @@
 #
 # Conditional build
-%bcond_without	gtk	# don't build gtk frontend
-
+%bcond_without	gtk	# don't build GTK+ frontend
+#
 Summary:	Desktop session recorder
 Summary(pl.UTF-8):	Rejestrator pulpitu
 Name:		recordmydesktop
@@ -44,16 +44,16 @@ używając tylko otwartych formatów takich jak Theora do zapisu obrazu i
 Vorbis do zapisu dźwięku, wykorzystując kontener Ogg.
 
 %package gtk
-Summary:	GTK frontend for recordmydesktop
-Summary(pl.UTF-8):	Frontend do recordmydesktop napisany w GTK
+Summary:	GTK+ frontend for recordmydesktop
+Summary(pl.UTF-8):	Frontend do recordmydesktop oparty na GTK+
 Group:		X11/Applications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description gtk
-GTK frontend for recordmydesktop.
+GTK+ frontend for recordmydesktop.
 
 %description gtk -l pl.UTF-8
-Frontend do recordmydesktop napisany w GTK.
+Frontend do recordmydesktop oparty na GTK+.
 
 %prep
 %setup -q -a 1
