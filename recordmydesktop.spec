@@ -1,7 +1,7 @@
 #
 # Conditional build
 %bcond_without	gtk	# don't build GTK+ frontend
-%bcond_without  x	# don't build for X
+%bcond_without  x	# don't build for X Window System frontends
 %define		module	recordMyDesktop
 #
 Summary:	Desktop session recorder
@@ -50,7 +50,7 @@ Summary:	GTK+ frontend for recordmydesktop
 Summary(pl.UTF-8):	Frontend do recordmydesktop oparty na GTK+
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:       %{name}-x = %{version}-%{release}
+Requires:       %{name}-x11 = %{version}-%{release}
 
 %description gtk
 GTK+ frontend for recordmydesktop.
@@ -58,16 +58,16 @@ GTK+ frontend for recordmydesktop.
 %description gtk -l pl.UTF-8
 Frontend do recordmydesktop oparty na GTK+.
 
-%package x
+%package x11
 Summary:        X Window System resource for recordmydesktop
 Summary(pl.UTF-8):     Zasoby X Window System do recordmydesktop
 Group:          X11/Applications
 Requires:       %{name} = %{version}-%{release}
 
-%description x
+%description x11
 X Window System resource for recordmydesktop.
 
-%description x -l pl.UTF-8
+%description x11 -l pl.UTF-8
 Zasoby X Window System do recordmydesktop.
 
 %prep
@@ -109,7 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/recordmydesktop.1*
 
 %if %{with x}
-%files x
+%files x11
 %dir %{py_sitescriptdir}/%{module}
 %{py_sitescriptdir}/%{module}/*
 %endif
