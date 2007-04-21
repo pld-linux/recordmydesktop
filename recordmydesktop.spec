@@ -1,12 +1,14 @@
 #
 # Conditional build
 %bcond_without	gtk	# don't build GTK+ frontend
+%bcond_without  x	# don't build for X
+%define		module	recordMyDesktop
 #
 Summary:	Desktop session recorder
 Summary(pl.UTF-8):	Rejestrator pulpitu
 Name:		recordmydesktop
 Version:	0.3.4
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/recordmydesktop/%{name}-%{version}.tar.gz
@@ -48,12 +50,25 @@ Summary:	GTK+ frontend for recordmydesktop
 Summary(pl.UTF-8):	Frontend do recordmydesktop oparty na GTK+
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
+Requires:       %{name}-x = %{version}-%{release}
 
 %description gtk
 GTK+ frontend for recordmydesktop.
 
 %description gtk -l pl.UTF-8
 Frontend do recordmydesktop oparty na GTK+.
+
+%package x
+Summary:        X Window System resource for recordmydesktop
+Summary(pl.UTF-8):     Zasoby X Window System do recordmydesktop
+Group:          X11/Applications
+Requires:       %{name} = %{version}-%{release}
+
+%description x
+X Window System resource for recordmydesktop.
+
+%description x -l pl.UTF-8
+Zasoby X Window System do recordmydesktop.
 
 %prep
 %setup -q -a 1
@@ -62,7 +77,8 @@ Frontend do recordmydesktop oparty na GTK+.
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-%configure
+%configure \
+	--with-x
 %{__make}
 
 %if %{with gtk}
@@ -91,6 +107,12 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog
 %attr(755,root,root) %{_bindir}/%{name}
 %{_mandir}/man1/recordmydesktop.1*
+
+%if %{with x}
+%files x
+%dir %{py_sitescriptdir}/%{module}
+%{py_sitescriptdir}/%{module}/*
+%endif
 
 %if %{with gtk}
 %files -f %{name}-gtk.lang gtk
