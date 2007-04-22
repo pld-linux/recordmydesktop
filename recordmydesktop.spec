@@ -50,7 +50,7 @@ Summary:	GTK+ frontend for recordmydesktop
 Summary(pl.UTF-8):	Frontend do recordmydesktop oparty na GTK+
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:       %{name}-x11 = %{version}-%{release}
+Requires:	%{name}-x11 = %{version}-%{release}
 
 %description gtk
 GTK+ frontend for recordmydesktop.
@@ -59,10 +59,10 @@ GTK+ frontend for recordmydesktop.
 Frontend do recordmydesktop oparty na GTK+.
 
 %package x11
-Summary:        X Window System resource for recordmydesktop
-Summary(pl.UTF-8):     Zasoby X Window System do recordmydesktop
-Group:          X11/Applications
-Requires:       %{name} = %{version}-%{release}
+Summary:	X Window System resource for recordmydesktop
+Summary(pl.UTF-8):	Zasoby X Window System do recordmydesktop
+Group:		X11/Applications
+Requires:	%{name} = %{version}-%{release}
 
 %description x11
 X Window System resource for recordmydesktop.
@@ -115,7 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 
 %if %{with gtk}
-%files -f %{name}-gtk.lang gtk
+%files gtk -f %{name}-gtk.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gtk-recordMyDesktop
 %{_desktopdir}/gtk-recordmydesktop.desktop
