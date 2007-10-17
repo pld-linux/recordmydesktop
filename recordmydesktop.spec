@@ -1,21 +1,24 @@
 #
 # Conditional build
 %bcond_without	gtk	# don't build GTK+ frontend
+%bcond_without	qt	# don't build Qt frontend
 %bcond_without  x	# don't build for X Window System frontends
 %define		module	recordMyDesktop
 #
 Summary:	Desktop session recorder
 Summary(pl.UTF-8):	Rejestrator pulpitu
 Name:		recordmydesktop
-Version:	0.3.4
-Release:	2
+Version:	0.3.6
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/recordmydesktop/%{name}-%{version}.tar.gz
-# Source0-md5:	56163494390dd208213c1563043eb3ee
+# Source0-md5:	67bf75182cb7c5189ed985672378e315
 Source1:	http://dl.sourceforge.net/recordmydesktop/gtk-%{name}-%{version}.tar.gz
-# Source1-md5:	5d160b4a907848c77f5649e04886547f
-URL:		http://recordmydesktop.sourceforge.net/
+# Source1-md5:	7895c05277d28f42cd5f36a8fdab0e1c
+Source2:	http://dl.sourceforge.net/recordmydesktop/qt-%{name}-%{version}.tar.gz
+# Source2-md5:	51b8bd426f7d1a667c1356cc9879f89d
+URL:		http://recordmydesktop.iovar.org/
 BuildRequires:	alsa-lib-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -25,6 +28,9 @@ BuildRequires:	libvorbis-devel
 %if %{with gtk}
 BuildRequires:	python-devel
 BuildRequires:	python-pygtk-devel
+%endif
+%if %{with qt}
+BuildRequires:	python-PyQt4-devel
 %endif
 BuildRequires:	xorg-lib-libICE-devel
 BuildRequires:	xorg-lib-libSM-devel
@@ -58,6 +64,19 @@ GTK+ frontend for recordmydesktop.
 %description gtk -l pl.UTF-8
 Frontend do recordmydesktop oparty na GTK+.
 
+%package qt
+Summary:	Qt frontend for recordmydesktop
+Summary(pl.UTF-8):	Frontend do recordmydesktop oparty na Qt
+Group:		X11/Applications
+Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-x11 = %{version}-%{release}
+
+%description qt
+Qt frontend for recordmydesktop.
+
+%description qt -l pl.UTF-8
+Frontend do recordmydesktop oparty na Qt.
+
 %package x11
 Summary:	X Window System resource for recordmydesktop
 Summary(pl.UTF-8):	Zasoby X Window System do recordmydesktop
@@ -71,7 +90,7 @@ X Window System resource for recordmydesktop.
 Zasoby X Window System do recordmydesktop.
 
 %prep
-%setup -q -a 1
+%setup -q -a 1 -a 2
 
 %build
 %{__aclocal}
@@ -85,6 +104,15 @@ Zasoby X Window System do recordmydesktop.
 cd gtk-%{name}-%{version}
 %configure
 %{__make}
+cd ..
+%endif
+
+%if %{with qt}
+cd qt-%{name}-%{version}
+sed -i -e 's@#! /bin/sh@#!/bin/bash@' configure
+%configure
+%{__make}
+cd ..
 %endif
 
 %install
@@ -93,10 +121,21 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%py_postclean %{py_sitescriptdir}/%{module}
+
 %if %{with gtk}
 %{__make} -C gtk-%{name}-%{version} install \
 	DESTDIR=$RPM_BUILD_ROOT
-%find_lang %{name}-gtk --all-name
+%find_lang gtk-recordMyDesktop
+%endif
+
+%if %{with qt}
+%{__make} -C qt-%{name}-%{version} install \
+	DESTDIR=$RPM_BUILD_ROOT
+rm -rf __find.*
+%find_lang qt-recordMyDesktop
+
+%py_postclean %{py_sitescriptdir}/qt_recordMyDesktop
 %endif
 
 %clean
@@ -110,14 +149,23 @@ rm -rf $RPM_BUILD_ROOT
 
 %if %{with x}
 %files x11
-%dir %{py_sitescriptdir}/%{module}
-%{py_sitescriptdir}/%{module}/*
+%defattr(644,root,root,755)
+%{py_sitescriptdir}/%{module}
 %endif
 
 %if %{with gtk}
-%files gtk -f %{name}-gtk.lang
+%files gtk -f gtk-recordMyDesktop.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gtk-recordMyDesktop
 %{_desktopdir}/gtk-recordmydesktop.desktop
 %{_pixmapsdir}/gtk-recordmydesktop.png
+%endif
+
+%if %{with qt}
+%files qt -f qt-recordMyDesktop.lang
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/qt-recordMyDesktop
+%{_desktopdir}/qt-recordmydesktop.desktop
+%{_pixmapsdir}/qt-recordmydesktop*.png
+%{py_sitescriptdir}/qt_recordMyDesktop
 %endif
