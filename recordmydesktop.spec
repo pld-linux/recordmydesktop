@@ -56,7 +56,6 @@ Summary:	GTK+ frontend for recordmydesktop
 Summary(pl.UTF-8):	Frontend do recordmydesktop oparty na GTK+
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	%{name}-x11 = %{version}-%{release}
 
 %description gtk
 GTK+ frontend for recordmydesktop.
@@ -69,7 +68,6 @@ Summary:	Qt frontend for recordmydesktop
 Summary(pl.UTF-8):	Frontend do recordmydesktop oparty na Qt
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	%{name}-x11 = %{version}-%{release}
 
 %description qt
 Qt frontend for recordmydesktop.
