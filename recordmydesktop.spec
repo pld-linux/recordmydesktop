@@ -8,16 +8,16 @@
 Summary:	Desktop session recorder
 Summary(pl.UTF-8):	Rejestrator pulpitu
 Name:		recordmydesktop
-Version:	0.3.6
+Version:	0.3.7.2
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/recordmydesktop/%{name}-%{version}.tar.gz
-# Source0-md5:	67bf75182cb7c5189ed985672378e315
+# Source0-md5:	34e8e0c843e5ac89da109553ed601816
 Source1:	http://dl.sourceforge.net/recordmydesktop/gtk-%{name}-%{version}.tar.gz
-# Source1-md5:	7895c05277d28f42cd5f36a8fdab0e1c
+# Source1-md5:	c6fdcd99caabea041709f5e0080e2f6d
 Source2:	http://dl.sourceforge.net/recordmydesktop/qt-%{name}-%{version}.tar.gz
-# Source2-md5:	51b8bd426f7d1a667c1356cc9879f89d
+# Source2-md5:	3b18bc3ef93e0ad529e86d44760b6eef
 URL:		http://recordmydesktop.iovar.org/
 BuildRequires:	alsa-lib-devel
 BuildRequires:	autoconf
@@ -68,6 +68,7 @@ Summary:	Qt frontend for recordmydesktop
 Summary(pl.UTF-8):	Frontend do recordmydesktop oparty na Qt
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
+Requires:	python-PyQt4
 
 %description qt
 Qt frontend for recordmydesktop.
