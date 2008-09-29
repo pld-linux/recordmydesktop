@@ -18,7 +18,7 @@ Source1:	http://dl.sourceforge.net/recordmydesktop/gtk-%{name}-%{version}.tar.gz
 # Source1-md5:	c6fdcd99caabea041709f5e0080e2f6d
 Source2:	http://dl.sourceforge.net/recordmydesktop/qt-%{name}-%{version}.tar.gz
 # Source2-md5:	3b18bc3ef93e0ad529e86d44760b6eef
-URL:		http://recordmydesktop.sourceforge.net
+URL:		http://recordmydesktop.sourceforge.net/
 BuildRequires:	alsa-lib-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
