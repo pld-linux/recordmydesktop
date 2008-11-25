@@ -8,16 +8,16 @@
 Summary:	Desktop session recorder
 Summary(pl.UTF-8):	Rejestrator pulpitu
 Name:		recordmydesktop
-Version:	0.3.7.2
-Release:	2
+Version:	0.3.8
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/recordmydesktop/%{name}-%{version}.tar.gz
-# Source0-md5:	34e8e0c843e5ac89da109553ed601816
+# Source0-md5:	9834d0fa7dfb67366434cc1c3a857e9c
 Source1:	http://dl.sourceforge.net/recordmydesktop/gtk-%{name}-%{version}.tar.gz
-# Source1-md5:	c6fdcd99caabea041709f5e0080e2f6d
+# Source1-md5:	2637b9be9801e0b2c3b6dae8f86a8b59
 Source2:	http://dl.sourceforge.net/recordmydesktop/qt-%{name}-%{version}.tar.gz
-# Source2-md5:	3b18bc3ef93e0ad529e86d44760b6eef
+# Source2-md5:	bf1525740755615ae172ae27fef68fb5
 URL:		http://recordmydesktop.sourceforge.net/
 BuildRequires:	alsa-lib-devel
 BuildRequires:	autoconf
