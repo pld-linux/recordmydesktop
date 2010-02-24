@@ -1,10 +1,12 @@
+# TODO
+# - missing BR: rmd_getzpixmap.c:31:35: error: X11/extensions/shmstr.h: No such file or directory
 #
 # Conditional build
 %bcond_without	gtk	# don't build GTK+ frontend
 %bcond_without	qt	# don't build Qt frontend
 %bcond_without  x	# don't build for X Window System frontends
+
 %define		module	recordMyDesktop
-#
 Summary:	Desktop session recorder
 Summary(pl.UTF-8):	Rejestrator pulpitu
 Name:		recordmydesktop
@@ -12,11 +14,11 @@ Version:	0.3.8
 Release:	2
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://dl.sourceforge.net/recordmydesktop/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/recordmydesktop/%{name}-%{version}.tar.gz
 # Source0-md5:	9834d0fa7dfb67366434cc1c3a857e9c
-Source1:	http://dl.sourceforge.net/recordmydesktop/gtk-%{name}-%{version}.tar.gz
+Source1:	http://downloads.sourceforge.net/recordmydesktop/gtk-%{name}-%{version}.tar.gz
 # Source1-md5:	2637b9be9801e0b2c3b6dae8f86a8b59
-Source2:	http://dl.sourceforge.net/recordmydesktop/qt-%{name}-%{version}.tar.gz
+Source2:	http://downloads.sourceforge.net/recordmydesktop/qt-%{name}-%{version}.tar.gz
 # Source2-md5:	bf1525740755615ae172ae27fef68fb5
 URL:		http://recordmydesktop.sourceforge.net/
 BuildRequires:	alsa-lib-devel
@@ -56,6 +58,7 @@ Summary:	GTK+ frontend for recordmydesktop
 Summary(pl.UTF-8):	Frontend do recordmydesktop oparty na GTK+
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
+Requires:	python-%{name} = %{version}-%{release}
 
 %description gtk
 GTK+ frontend for recordmydesktop.
@@ -76,16 +79,16 @@ Qt frontend for recordmydesktop.
 %description qt -l pl.UTF-8
 Frontend do recordmydesktop oparty na Qt.
 
-%package x11
+%package -n python-%{name}
 Summary:	X Window System resource for recordmydesktop
 Summary(pl.UTF-8):	Zasoby X Window System do recordmydesktop
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 
-%description x11
+%description -n python-%{name}
 X Window System resource for recordmydesktop.
 
-%description x11 -l pl.UTF-8
+%description -n python-%{name} -l pl.UTF-8
 Zasoby X Window System do recordmydesktop.
 
 %prep
@@ -144,27 +147,27 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog
 %attr(755,root,root) %{_bindir}/%{name}
-%{_mandir}/man1/recordmydesktop.1*
+%{_mandir}/man1/%{name}.1*
 
 %if %{with x}
-%files x11
+%files -n python-%{name}
 %defattr(644,root,root,755)
 %{py_sitescriptdir}/%{module}
 %endif
 
 %if %{with gtk}
-%files gtk -f gtk-recordMyDesktop.lang
+%files gtk -f gtk-%{name}.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/gtk-recordMyDesktop
-%{_desktopdir}/gtk-recordmydesktop.desktop
-%{_pixmapsdir}/gtk-recordmydesktop.png
+%attr(755,root,root) %{_bindir}/gtk-%{module}
+%{_desktopdir}/gtk-%{name}.desktop
+%{_pixmapsdir}/gtk-%{name}.png
 %endif
 
 %if %{with qt}
-%files qt -f qt-recordMyDesktop.lang
+%files qt -f qt-%{module}.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/qt-recordMyDesktop
-%{_desktopdir}/qt-recordmydesktop.desktop
-%{_pixmapsdir}/qt-recordmydesktop*.png
-%{py_sitescriptdir}/qt_recordMyDesktop
+%attr(755,root,root) %{_bindir}/qt-%{module}
+%{_desktopdir}/qt-%{name}.desktop
+%{_pixmapsdir}/qt-%{name}*.png
+%{py_sitescriptdir}/qt_%{module}
 %endif
