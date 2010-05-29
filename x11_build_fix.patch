@@ -1,0 +1,22 @@
+--- recordmydesktop-0.3.8/src/rmd_getzpixmap.c~	2008-11-23 16:09:23.000000000 +0100
++++ recordmydesktop-0.3.8/src/rmd_getzpixmap.c	2010-05-29 23:37:28.383498736 +0200
+@@ -28,7 +28,7 @@
+ 
+ #include <X11/Xlib.h>
+ #include <X11/Xlibint.h>
+-#include <X11/extensions/shmstr.h>
++#include <X11/extensions/shmproto.h>
+ #include <X11/extensions/XShm.h>
+ 
+ #include "rmd_types.h"
+--- recordmydesktop-0.3.8/src/rmd_update_image.c~	2008-11-23 16:09:23.000000000 +0100
++++ recordmydesktop-0.3.8/src/rmd_update_image.c	2010-05-29 23:39:30.020624282 +0200
+@@ -27,7 +27,7 @@
+ #include "config.h"
+ 
+ #include <X11/Xlibint.h>
+-#include <X11/extensions/shmstr.h>
++#include <X11/extensions/shmproto.h>
+ #include <X11/extensions/XShm.h>
+ 
+ #include "rmd_types.h"

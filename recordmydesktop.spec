@@ -11,7 +11,7 @@ Summary:	Desktop session recorder
 Summary(pl.UTF-8):	Rejestrator pulpitu
 Name:		recordmydesktop
 Version:	0.3.8
-Release:	3
+Release:	5
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/recordmydesktop/%{name}-%{version}.tar.gz
@@ -20,6 +20,8 @@ Source1:	http://downloads.sourceforge.net/recordmydesktop/gtk-%{name}-%{version}
 # Source1-md5:	2637b9be9801e0b2c3b6dae8f86a8b59
 Source2:	http://downloads.sourceforge.net/recordmydesktop/qt-%{name}-%{version}.tar.gz
 # Source2-md5:	bf1525740755615ae172ae27fef68fb5
+Patch0:     cache_fix.patch
+Patch1:     x11_build_fix.patch
 URL:		http://recordmydesktop.sourceforge.net/
 BuildRequires:	alsa-lib-devel
 BuildRequires:	autoconf
@@ -94,6 +96,8 @@ Zasoby X Window System do recordmydesktop.
 
 %prep
 %setup -q -a 1 -a 2
+%patch0 -p1
+%patch1 -p1
 
 %build
 %{__aclocal}
@@ -157,7 +161,7 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 
 %if %{with gtk}
-%files gtk -f gtk-%{name}.lang
+%files gtk -f gtk-recordMyDesktop.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gtk-%{module}
 %{_desktopdir}/gtk-%{name}.desktop
@@ -165,10 +169,11 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 
 %if %{with qt}
-%files qt -f qt-%{module}.lang
+%files qt -f qt-recordMyDesktop.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/qt-%{module}
 %{_desktopdir}/qt-%{name}.desktop
 %{_pixmapsdir}/qt-%{name}*.png
+%{_pixmapsdir}/*.svg
 %{py_sitescriptdir}/qt_%{module}
 %endif
