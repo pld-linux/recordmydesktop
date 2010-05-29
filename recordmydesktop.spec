@@ -11,7 +11,7 @@ Summary:	Desktop session recorder
 Summary(pl.UTF-8):	Rejestrator pulpitu
 Name:		recordmydesktop
 Version:	0.3.8
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/recordmydesktop/%{name}-%{version}.tar.gz
@@ -72,6 +72,7 @@ Summary(pl.UTF-8):	Frontend do recordmydesktop oparty na Qt
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	python-PyQt4
+Requires:   /usr/bin/jack_lsp
 
 %description qt
 Qt frontend for recordmydesktop.
