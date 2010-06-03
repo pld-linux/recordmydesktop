@@ -20,22 +20,26 @@ Source1:	http://downloads.sourceforge.net/recordmydesktop/gtk-%{name}-%{version}
 # Source1-md5:	2637b9be9801e0b2c3b6dae8f86a8b59
 Source2:	http://downloads.sourceforge.net/recordmydesktop/qt-%{name}-%{version}.tar.gz
 # Source2-md5:	bf1525740755615ae172ae27fef68fb5
-Patch0:     cache_fix.patch
-Patch1:     x11_build_fix.patch
+Patch0:		cache_fix.patch
+Patch1:		x11_build_fix.patch
 URL:		http://recordmydesktop.sourceforge.net/
+%if %{with qt}
+BuildRequires:	QtCore-devel
+BuildRequires:	QtGui-devel
+%endif
 BuildRequires:	alsa-lib-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gettext-devel
+BuildRequires:	jack-audio-connection-kit-devel
 BuildRequires:	libogg-devel
 BuildRequires:	libtheora-devel
 BuildRequires:	libvorbis-devel
-%if %{with gtk}
+BuildRequires:	pkgconfig
+%{?with_qt:BuildRequires:	python-PyQt4-devel}
 BuildRequires:	python-devel
-BuildRequires:	python-pygtk-devel
-%endif
-%if %{with qt}
-BuildRequires:	python-PyQt4-devel
-%endif
+%{?with_gtk:BuildRequires:	python-pygtk-devel}
+BuildRequires:	rpm-pythonprov
 BuildRequires:	xorg-lib-libICE-devel
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-libXdamage-devel
@@ -73,8 +77,8 @@ Summary:	Qt frontend for recordmydesktop
 Summary(pl.UTF-8):	Frontend do recordmydesktop oparty na Qt
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
+Requires:	/usr/bin/jack_lsp
 Requires:	python-PyQt4
-Requires:   /usr/bin/jack_lsp
 
 %description qt
 Qt frontend for recordmydesktop.
