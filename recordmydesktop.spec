@@ -1,5 +1,3 @@
-# TODO
-# - missing BR: rmd_getzpixmap.c:31:35: error: X11/extensions/shmstr.h: No such file or directory
 #
 # Conditional build
 %bcond_without	gtk	# don't build GTK+ frontend
