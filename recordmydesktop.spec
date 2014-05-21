@@ -40,6 +40,7 @@ BuildRequires:	libogg-devel
 BuildRequires:	libtheora-devel
 BuildRequires:	libvorbis-devel
 BuildRequires:	pkgconfig
+%{?with_qt:BuildRequires:      python-PyQt4}
 BuildRequires:	python-devel
 %{?with_gtk:BuildRequires:	python-pygtk-devel}
 BuildRequires:	rpm-pythonprov
