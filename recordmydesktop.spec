@@ -25,6 +25,9 @@ Source2:	http://downloads.sourceforge.net/recordmydesktop/qt-%{name}-%{qt_ver}.t
 # Source2-md5:	bf1525740755615ae172ae27fef68fb5
 Patch0:		cache_fix.patch
 Patch1:		x11_build_fix.patch
+Patch2:		%{name}-ALSA-default.patch
+Patch3:		%{name}-sane-theora-defaults.patch
+Patch4:		%{name}-fix-configure-ac-jack-support.patch
 URL:		http://recordmydesktop.sourceforge.net/
 %if %{with qt}
 BuildRequires:	QtCore-devel
@@ -65,8 +68,8 @@ Vorbis do zapisu dźwięku, wykorzystując kontener Ogg.
 %package gtk
 Summary:	GTK+ frontend for recordmydesktop
 Summary(pl.UTF-8):	Frontend do recordmydesktop oparty na GTK+
-Group:		X11/Applications
 Version:	%{gtk_ver}
+Group:		X11/Applications
 Requires:	%{name} >= %{gtk_ver}
 Requires:	python-%{name} >= %{gtk_ver}
 
@@ -79,8 +82,8 @@ Frontend do recordmydesktop oparty na GTK+.
 %package qt
 Summary:	Qt frontend for recordmydesktop
 Summary(pl.UTF-8):	Frontend do recordmydesktop oparty na Qt
-Group:		X11/Applications
 Version:	%{qt_ver}
+Group:		X11/Applications
 Requires:	%{name} >= %{qt_ver}
 Requires:	/usr/bin/jack_lsp
 Requires:	python-PyQt4
@@ -107,6 +110,9 @@ Zasoby X Window System do recordmydesktop.
 %setup -q -a 1 -a 2
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 %build
 %{__aclocal}
