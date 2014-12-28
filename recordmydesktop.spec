@@ -34,7 +34,7 @@ BuildRequires:	QtGui-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	jack-audio-connection-kit-devel
 BuildRequires:	libogg-devel
 BuildRequires:	libtheora-devel
