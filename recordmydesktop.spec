@@ -12,7 +12,7 @@ Summary(pl.UTF-8):	Rejestrator pulpitu
 Name:		recordmydesktop
 Version:	%{ver}
 # do not decrease Release, as subpackages Version is not in sync with main Version
-Release:	6
+Release:	7
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/recordmydesktop/%{name}-%{ver}.tar.gz
